@@ -1,4 +1,4 @@
-# ProAssist API
+# Proassist API
 
 [![CI](https://github.com/szwolinski/proassist-task/actions/workflows/ci.yml/badge.svg)](https://github.com/szwolinski/proassist-task/actions/workflows/ci.yml)
 
