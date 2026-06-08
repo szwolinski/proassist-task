@@ -5,6 +5,7 @@
 This repository contains a recruitment task implementation for an API system managing Tickets, Devices, and Technicians.
 
 ## Architecture & Approach
+A Layered Architecture was chosen over Clean/Hexagonal Architecture. In the context of this project, strictly decoupling the business logic from the framework does not provide sufficient value and would only unnecessarily overcomplicate the development process.
 
 The project combines two architectural approaches to optimize development speed while maintaining clean core business logic:
 * **API Platform (Rapid CRUD):** Classic, basic approach for fast database operations for side domains, such as **Technician** and **Device**.
