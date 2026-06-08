@@ -1,0 +1,15 @@
+meta {
+  name: 3. Get Single Device
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/devices/1
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}

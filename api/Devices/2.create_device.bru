@@ -1,0 +1,23 @@
+meta {
+  name: 2. Create Device
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/devices
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}
+
+body:json {
+  {
+    "serialNumber": "SN-987654321",
+    "model": "Dell Latitude 5520",
+    "customerName": "Firma XYZ Sp. z o.o."
+  }
+}

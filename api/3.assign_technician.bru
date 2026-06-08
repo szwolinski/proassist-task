@@ -1,0 +1,21 @@
+meta {
+  name: 3. Assign Technician
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/tickets/22/assign
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}
+
+body:json {
+  {
+    "technicianId": 9
+  }
+}

@@ -1,0 +1,22 @@
+meta {
+  name: 5. Change Ticket Status
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/api/tickets/35/status
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}
+
+body:json {
+  {
+    "transition": "resolve",
+    "expectedVersion": 1
+  }
+}

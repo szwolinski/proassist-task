@@ -1,0 +1,26 @@
+meta {
+  name: 4. Update Technician
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/technicians/1
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/merge-patch+json
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}
+
+body:json {
+  {
+    "lastName": "Kowalski-Nowak",
+    "email": "jan.kowalski.nowak@serwis.pl"
+  }
+}

@@ -1,0 +1,24 @@
+meta {
+  name: 6. Get Tickets
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/tickets?status=NEW&order[createdAt]=DESC
+  body: none
+  auth: bearer
+}
+
+query {
+  status: NEW
+  order[createdAt]: DESC
+  ~priority: HIGH
+  ~serialNumber: 123
+  ~order[status]: ASC
+  ~page: 2
+  ~itemsPerPage: 10
+}
+auth:bearer {
+  token: {{jwt_token}}
+}

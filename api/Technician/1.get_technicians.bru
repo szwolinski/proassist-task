@@ -1,0 +1,15 @@
+meta {
+  name: 1. Get Technicians
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/technicians
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}

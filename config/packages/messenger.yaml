@@ -1,0 +1,13 @@
+framework:
+    messenger:
+        default_bus: command.bus
+        buses:
+            command.bus: ~
+            query.bus: ~
+        transports:
+            sync: 'sync://'
+            async: 'doctrine://default'
+        routing:
+            'App\ServiceRequest\Message\Command\*': sync
+            'App\ServiceRequest\Message\Query\*': sync
+            'App\ServiceRequest\Message\TicketDoneMessage': async

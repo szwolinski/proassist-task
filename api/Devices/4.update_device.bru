@@ -1,0 +1,26 @@
+meta {
+  name: 4. Update Device
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/devices/1
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/merge-patch+json
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}
+
+body:json {
+  {
+    "model": "Dell Latitude 5520 (Zaktualizowany)",
+    "customerName": "Firma XYZ Sp. z o.o. w restrukturyzacji"
+  }
+}

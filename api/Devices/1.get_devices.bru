@@ -1,0 +1,21 @@
+meta {
+  name: 1. Get Devices
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/devices?page=1&itemsPerPage=2&serialNumber=SN-UEKZ-6300
+  body: none
+  auth: bearer
+}
+
+params:query {
+  page: 1
+  itemsPerPage: 2
+  serialNumber: SN-UEKZ-6300
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}

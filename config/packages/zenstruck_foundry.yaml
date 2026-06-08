@@ -1,0 +1,13 @@
+when@dev: &dev
+    zenstruck_foundry:
+        enable_auto_refresh_with_lazy_objects: true
+        persistence:
+            flush_once: true
+        auto_refresh_proxies: true
+        make_factory:
+            default_namespace: 'App\Tests\Api\Factory'
+        make_story:
+            default_namespace: 'App\Tests\Api\Story'
+
+
+when@test: *dev

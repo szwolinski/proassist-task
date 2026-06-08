@@ -1,0 +1,23 @@
+meta {
+  name: 2. Create Technician
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/technicians
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}
+
+body:json {
+  {
+    "firstName": "Jan",
+    "lastName": "Kowalski",
+    "email": "jan.kowalski@serwis.pl"
+  }
+}

@@ -1,0 +1,24 @@
+meta {
+  name: 2. Create Ticket
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/tickets
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}
+
+body:json {
+  {
+    "title": "Awaria klimatyzacji w serwerowni A",
+    "description": "Klimatyzator rzuca błędem E4, temperatura na rackach rośnie.",
+    "priority": "CRITICAL",
+    "deviceId": 1
+  }
+}
