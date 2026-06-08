@@ -10,7 +10,6 @@ use App\ServiceRequest\Dto\TicketAssignPayload;
 use App\ServiceRequest\Message\Command\AssignTechnicianCommand;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 /**
@@ -18,12 +17,9 @@ use Symfony\Component\Messenger\MessageBusInterface;
  */
 final class TicketAssignProcessor implements ProcessorInterface
 {
-    use HandleTrait;
-
     public function __construct(
-        MessageBusInterface $commandBus,
+        private MessageBusInterface $commandBus,
     ) {
-        $this->messageBus = $commandBus;
     }
 
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): JsonResponse
@@ -41,7 +37,7 @@ final class TicketAssignProcessor implements ProcessorInterface
             $data->expectedVersion
         );
 
-        $this->messageBus->dispatch($command);
+        $this->commandBus->dispatch($command);
 
         return new JsonResponse(['message' => 'Technician assigned successfully.'], 200);
     }

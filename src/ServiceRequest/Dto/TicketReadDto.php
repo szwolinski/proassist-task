@@ -10,12 +10,15 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\OpenApi\Model\Operation;
 use ApiPlatform\OpenApi\Model\Parameter;
+use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
+use ApiPlatform\OpenApi\Model\MediaType;
 use App\ServiceRequest\Enum\TicketPriority;
 use App\ServiceRequest\Enum\TicketStatus;
 use App\ServiceRequest\Normalizer\PaginatedCollectionNormalizer;
 use App\ServiceRequest\State\Provider\TicketCollectionProvider;
 use App\ServiceRequest\State\Provider\TicketItemProvider;
 use Symfony\Component\Serializer\Attribute\Groups;
+use ArrayObject;
 
 #[ApiResource(
     shortName: 'Ticket',
@@ -23,6 +26,20 @@ use Symfony\Component\Serializer\Attribute\Groups;
         new GetCollection(
             uriTemplate: '/tickets',
             openapi: new Operation(
+                responses: [
+                    '200' => new OpenApiResponse(description: 'Successful operation. Returns a paginated list of tickets.'),
+                    '401' => new OpenApiResponse(
+                        description: 'Unauthorized - JWT token not found or invalid.',
+                        content: new ArrayObject([
+                            'application/problem+json' => new MediaType(
+                                schema: new ArrayObject(['$ref' => '#/components/schemas/Error']),
+                                example: ['title' => 'An error occurred', 'status' => 401, 'detail' => 'JWT Token not found']
+                            )
+                        ])
+                    )
+                ],
+                summary: 'Get a paginated list of tickets',
+                description: 'Retrieves a list of service tickets with optional filtering and sorting.',
                 parameters: [
                     new Parameter(
                         name: 'status',
@@ -82,6 +99,31 @@ use Symfony\Component\Serializer\Attribute\Groups;
         ),
         new Get(
             uriTemplate: '/tickets/{id}',
+            openapi: new Operation(
+                responses: [
+                    '200' => new OpenApiResponse(description: 'Successful operation. Returns the ticket details.'),
+                    '401' => new OpenApiResponse(
+                        description: 'Unauthorized - JWT token not found or invalid.',
+                        content: new ArrayObject([
+                            'application/problem+json' => new MediaType(
+                                schema: new ArrayObject(['$ref' => '#/components/schemas/Error']),
+                                example: ['title' => 'An error occurred', 'status' => 401, 'detail' => 'Invalid JWT Token']
+                            )
+                        ])
+                    ),
+                    '404' => new OpenApiResponse(
+                        description: 'Not Found - Ticket does not exist.',
+                        content: new ArrayObject([
+                            'application/problem+json' => new MediaType(
+                                schema: new ArrayObject(['$ref' => '#/components/schemas/Error']),
+                                example: ['title' => 'An error occurred', 'status' => 404, 'detail' => 'Ticker with id 123 not found.']
+                            )
+                        ])
+                    )
+                ],
+                summary: 'Get ticket details',
+                description: 'Retrieves full details of a specific service ticket by ID.'
+            ),
             normalizationContext: ['groups' => ['ticket:read:item']],
             provider: TicketItemProvider::class,
         )

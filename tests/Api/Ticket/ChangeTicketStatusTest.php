@@ -26,7 +26,7 @@ final class ChangeTicketStatusTest extends AbstractApiTestCase
             ]
         ]);
 
-        $this->assertResponseStatusCodeSame(202);
+        $this->assertResponseStatusCodeSame(204);
     }
 
     public function test_it_changes_status_successfully_as_assigned_technician(): void
@@ -50,7 +50,7 @@ final class ChangeTicketStatusTest extends AbstractApiTestCase
             ]
         ]);
 
-        $this->assertResponseStatusCodeSame(202);
+        $this->assertResponseStatusCodeSame(204);
     }
 
     public function test_it_returns_403_when_user_has_no_permission(): void

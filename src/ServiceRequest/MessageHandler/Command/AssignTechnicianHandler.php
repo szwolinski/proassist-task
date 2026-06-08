@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\ServiceRequest\MessageHandler\Command;
 
 use ApiPlatform\HttpCache\PurgerInterface;
-use ApiPlatform\Symfony\Security\Exception\AccessDeniedException;
 use App\ServiceRequest\Enum\TicketStatus;
 use App\ServiceRequest\Message\Command\AssignTechnicianCommand;
 use App\ServiceRequest\Repository\TechnicianRepository;
@@ -20,6 +19,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Workflow\WorkflowInterface;
 
 #[AsMessageHandler]

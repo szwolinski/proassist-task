@@ -15,9 +15,13 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\QueryParameter;
+use ApiPlatform\OpenApi\Model\MediaType;
 use ApiPlatform\OpenApi\Model\Operation;
+use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
+use ApiPlatform\OpenApi\Model\Response;
 use App\ServiceRequest\Normalizer\PaginatedCollectionNormalizer;
 use App\ServiceRequest\Repository\DeviceRepository;
+use ArrayObject;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -59,6 +63,25 @@ use Doctrine\ORM\Mapping as ORM;
         new Patch(security: "is_granted('ROLE_ADMIN')"),
         new Delete(security: "is_granted('ROLE_ADMIN')")
     ],
+    openapi: new OpenApiOperation(
+        responses: [
+            '401' => new Response(
+                description: 'Invalid JWT Token.',
+                content: new ArrayObject([
+                    'application/problem+json' => new MediaType(
+                        schema: new ArrayObject(['$ref' => '#/components/schemas/Error']),
+                        example: [
+                            'title' => 'An error occurred',
+                            'status' => 401,
+                            'detail' => 'JWT Token not found'
+                        ]
+                    )
+                ])
+            )
+        ],
+        summary: 'Get technician performance report',
+        description: 'Returns aggregated statistics for each technician (total assigned vs completed tickets).'
+    ),
     paginationClientEnabled: true,
     paginationClientItemsPerPage: true,
 )]

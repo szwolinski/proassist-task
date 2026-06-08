@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\ServiceRequest\MessageHandler\Command;
 
 use ApiPlatform\HttpCache\PurgerInterface;
-use ApiPlatform\Metadata\Exception\AccessDeniedException;
 use App\ServiceRequest\Entity\Ticket;
 use App\ServiceRequest\Message\Command\CreateTicketCommand;
 use App\ServiceRequest\Repository\DeviceRepository;
@@ -14,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Webmozart\Assert\Assert;
 
 #[AsMessageHandler(bus: 'command.bus')]
