@@ -61,7 +61,7 @@ test: ## Run PHPUnit tests and stop on first failure
 
 .PHONY: phpstan
 phpstan: ## Run PHPStan static analysis at level 8
-	$(PHP_CONTAINER) vendor/bin/phpstan analyse -l 8 src --memory-limit=1G
+	$(PHP_CONTAINER) vendor/bin/phpstan analyse --memory-limit=1G
 
 # --- Prod ---
 .PHONY: prod-build
