@@ -25,7 +25,7 @@ jobs:
               run: docker compose up -d --build
 
             - name: Install Composer Dependencies
-              run: docker compose exec -T app composer install --progress=plain --no-interaction
+              run: docker compose exec -T app composer install --no-progress --no-interaction
 
             - name: Wait for Database Connection
               run: |
