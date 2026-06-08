@@ -1,11 +1,11 @@
 api_platform:
-    title: Hello API Platform
+    title: Proassist API
     version: 1.0.0
     http_cache:
         invalidation:
             enabled: true
     exception_to_status:
-        \Symfony\Component\Serializer\Exception\UnexpectedValueException: 400
+        Symfony\Component\Serializer\Exception\UnexpectedValueException: 400
         Doctrine\DBAL\Exception\UniqueConstraintViolationException: 409
     defaults:
         stateless: true

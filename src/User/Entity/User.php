@@ -1,8 +1,8 @@
 <?php
 
-namespace App\ServiceRequest\Entity;
+namespace App\User\Entity;
 
-use App\ServiceRequest\Repository\UserRepository;
+use App\User\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use LogicException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;

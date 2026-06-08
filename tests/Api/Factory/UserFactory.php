@@ -2,7 +2,7 @@
 
 namespace App\Tests\Api\Factory;
 
-use App\ServiceRequest\Entity\User;
+use App\User\Entity\User;
 use Override;
 use Zenstruck\Foundry\Persistence\PersistentObjectFactory;
 

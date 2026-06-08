@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ServiceRequest\OpenApi;
+namespace App\Shared\OpenApi;
 
 use ApiPlatform\OpenApi\Factory\OpenApiFactoryInterface;
 use ApiPlatform\OpenApi\Model\MediaType;

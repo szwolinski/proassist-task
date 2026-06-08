@@ -8,17 +8,17 @@ use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\OpenApi\Model\MediaType;
 use ApiPlatform\OpenApi\Model\Operation;
 use ApiPlatform\OpenApi\Model\Parameter;
 use ApiPlatform\OpenApi\Model\Response as OpenApiResponse;
-use ApiPlatform\OpenApi\Model\MediaType;
 use App\ServiceRequest\Enum\TicketPriority;
 use App\ServiceRequest\Enum\TicketStatus;
-use App\ServiceRequest\Normalizer\PaginatedCollectionNormalizer;
 use App\ServiceRequest\State\Provider\TicketCollectionProvider;
 use App\ServiceRequest\State\Provider\TicketItemProvider;
-use Symfony\Component\Serializer\Attribute\Groups;
+use App\Shared\Normalizer\PaginatedCollectionNormalizer;
 use ArrayObject;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ApiResource(
     shortName: 'Ticket',

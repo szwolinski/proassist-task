@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\ServiceRequest\DataFixtures;
+namespace App\DataFixtures;
 
 use App\ServiceRequest\Entity\Device;
 use App\ServiceRequest\Entity\Technician;
 use App\ServiceRequest\Entity\Ticket;
-use App\ServiceRequest\Entity\User;
 use App\ServiceRequest\Enum\TicketPriority;
 use App\ServiceRequest\Enum\TicketStatus;
+use App\User\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;

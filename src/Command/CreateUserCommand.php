@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\ServiceRequest\Command;
+namespace App\Command;
 
-use App\ServiceRequest\Entity\User;
+use App\User\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;

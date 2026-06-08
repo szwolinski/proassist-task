@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\EventSubscriber;
+namespace App\Tests\Unit\Shared\EventSubscriber;
 
 use App\ServiceRequest\Entity\Ticket;
 use App\ServiceRequest\Enum\TicketStatus;

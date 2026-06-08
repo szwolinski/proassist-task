@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\ServiceRequest\Normalizer;
+namespace App\Shared\Normalizer;
 
 use ApiPlatform\State\Pagination\PaginatorInterface;
-use ApiPlatform\State\Pagination\TraversablePaginator;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;

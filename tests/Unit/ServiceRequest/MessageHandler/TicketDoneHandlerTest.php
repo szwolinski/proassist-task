@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\MessageHandler;
+namespace App\Tests\Unit\ServiceRequest\MessageHandler;
 
 use App\ServiceRequest\Entity\Ticket;
 use App\ServiceRequest\Message\TicketDoneMessage;

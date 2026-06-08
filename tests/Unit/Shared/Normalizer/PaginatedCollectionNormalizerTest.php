@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\ServiceRequest\Normalizer;
+namespace App\Tests\Unit\Shared\Normalizer;
 
 use ApiPlatform\State\Pagination\PaginatorInterface;
-use App\ServiceRequest\Normalizer\PaginatedCollectionNormalizer;
+use App\Shared\Normalizer\PaginatedCollectionNormalizer;
 use App\Tests\Fake\FakePaginator;
 use PHPUnit\Framework\TestCase;
 use stdClass;
