@@ -24,19 +24,6 @@ use ArrayObject;
                     '200' => new OpenApiResponse(
                         description: 'Successful operation. Returns the history of the ticket.'
                     ),
-                    '401' => new OpenApiResponse(
-                        description: 'Unauthorized - JWT token not found or invalid.',
-                        content: new ArrayObject([
-                            'application/problem+json' => new MediaType(
-                                schema: new ArrayObject(['$ref' => '#/components/schemas/Error']),
-                                example: [
-                                    'title' => 'An error occurred',
-                                    'status' => 401,
-                                    'detail' => 'JWT Token not found'
-                                ]
-                            )
-                        ])
-                    ),
                     '401' => new Response(
                         description: 'Unauthorized - Invalid or expired JWT Token.',
                         content: new ArrayObject([
