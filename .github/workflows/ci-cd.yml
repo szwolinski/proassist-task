@@ -36,7 +36,7 @@ jobs:
               run: docker compose exec -T app php bin/console doctrine:migrations:migrate --no-interaction
 
             - name: Run PHPStan Analysis
-              run: docker compose exec -T app vendor/bin/phpstan analyse --error-format=github --memory_limit=1G
+              run: docker compose exec -T app vendor/bin/phpstan analyse --error-format=github --memory-limit=1G
 
             - name: Execute PHPUnit Tests
               run: docker compose exec -T app bin/phpunit
