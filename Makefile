@@ -50,6 +50,10 @@ db-reset: ## Drop, recreate database and reload schema with fixtures
 	$(CONSOLE) doctrine:migrations:migrate --no-interaction
 	$(CONSOLE) doctrine:fixtures:load --no-interaction
 
+.PHONY: create-user
+create-user: ## Create a new user (usage: make create-user email=admin@proassist.pl password=secret role=ROLE_ADMIN)
+	$(CONSOLE) app:create-user $(email) $(password) $(role)
+
 # --- Tests & Static Analysis ---
 .PHONY: cc
 cc: ## Clear Symfony cache
