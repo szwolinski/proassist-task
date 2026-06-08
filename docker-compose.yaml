@@ -41,5 +41,23 @@ services:
             - "5432:5432"
         volumes:
             - database_data:/var/lib/postgresql/data:rw
+
+    messenger-worker:
+        build:
+            context: .
+            target: dev
+        container_name: proassist-worker-dev
+        command: php bin/console messenger:consume async -vv --limit=50
+        restart: unless-stopped
+        volumes:
+            - .:/var/www/html:rw
+        environment:
+            APP_ENV: dev
+            APP_SECRET: local_dev_secret_key
+            DATABASE_URL: "postgresql://app:!ChangeMe!@database:5432/app?serverVersion=16&charset=utf8"
+        depends_on:
+            database:
+                condition: service_healthy
+
 volumes:
     database_data:

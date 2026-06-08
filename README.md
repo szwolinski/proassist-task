@@ -86,3 +86,31 @@ To build an optimized, secured image stripped of development tools (like Xdebug 
 ```bash
 make prod-build
 ``` 
+
+## Background Processing (Symfony Messenger)
+
+The application uses asynchronous message processing for heavy or non-blocking tasks (e.g., `TicketDoneMessage`).
+
+### Local Development
+The asynchronous worker is automatically started via Docker Compose (`messenger-worker` service). If you prefer to run it manually outside of Docker, execute:
+```bash
+php bin/console messenger:consume async -vv
+```
+
+## Background Processing (Symfony Messenger)
+
+The application uses asynchronous message processing for heavy or non-blocking tasks (e.g., `TicketDoneMessage`).
+
+### Production Deployment
+In a production environment, running the consume command directly is insufficient as the process might exit or crash. It is recommended to manage the worker using a process manager like Supervisor or systemd to ensure high availability and automatic restarts.
+Example Supervisor configuration (/etc/supervisor/conf.d/messenger-worker.conf):
+
+``` ini
+[program:messenger-worker]
+command=php /var/www/html/bin/console messenger:consume async --memory-limit=128M --time-limit=3600
+user=www-data
+numprocs=2
+autostart=true
+autorestart=true
+process_name=%(program_name)s_%(process_num)02d
+```
