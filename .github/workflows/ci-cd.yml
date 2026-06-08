@@ -1,0 +1,46 @@
+name: Code Quality Check (CI)
+
+on:
+    push:
+        branches: [ "main" ]
+    pull_request:
+        branches: [ "main" ]
+
+jobs:
+    qa:
+        name: PHPStan & PHPUnit
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Create .env.local for Testing
+              run: |
+                  echo "APP_ENV=test" > .env.local
+                  echo "APP_SECRET=ci_test_secret_only_for_github_actions" >> .env.local
+                  echo "DATABASE_URL=postgresql://app:!ChangeMe!@database:5432/app?serverVersion=16&charset=utf8" >> .env.local
+
+            - name: Build and Start Dev Environment
+              run: docker compose up -d --build
+
+            - name: Install Composer Dependencies
+              run: docker compose exec -T app composer install --progress=plain --no-interaction
+
+            - name: Wait for Database Connection
+              run: |
+                  echo "Waiting for database to be ready..."
+                  docker compose exec -T database pg_isready -U app -d app -h localhost || sleep 3
+
+            - name: Run Database Migrations
+              run: docker compose exec -T app php bin/console doctrine:migrations:migrate --no-interaction
+
+            - name: Run PHPStan Analysis
+              run: docker compose exec -T app vendor/bin/phpstan analyse --error-format=github
+
+            - name: Execute PHPUnit Tests
+              run: docker compose exec -T app bin/phpunit
+
+            - name: Tear down Dev Environment
+              if: always()
+              run: docker compose down -v
