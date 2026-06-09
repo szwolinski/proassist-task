@@ -22,7 +22,7 @@ jobs:
                   echo "DATABASE_URL=postgresql://app:!ChangeMe!@database:5432/app?serverVersion=16&charset=utf8" >> .env.local
 
             - name: Build and Start Dev Environment
-              run: docker compose up -d --build
+              run: docker compose up -d app database --build
 
             - name: Install Composer Dependencies
               run: docker compose exec -T app composer install --no-progress --no-interaction
